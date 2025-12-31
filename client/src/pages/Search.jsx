@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Search, Film } from "lucide-react"
+import { Search as SearchIcon, Film } from "lucide-react"
 
 // Mock MovieCard component for demonstration
 function MovieCard({ movie }) {
@@ -57,7 +57,7 @@ export default function Search(){
         <div className="mb-12">
           <div className="max-w-2xl mx-auto relative">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <SearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input 
                 value={q} 
                 onChange={e=>setQ(e.target.value)}
@@ -110,7 +110,7 @@ export default function Search(){
         {/* Initial State */}
         {!loading && !q && results.length === 0 && (
           <div className="text-center py-12">
-            <Search className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+            <SearchIcon className="w-16 h-16 text-gray-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-300 mb-2">Start your search</h3>
             <p className="text-gray-500">Enter a movie title above to begin</p>
           </div>
