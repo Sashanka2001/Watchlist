@@ -76,11 +76,14 @@ export default function Search(){
             <h2 className="text-xl font-semibold text-white mb-6">
               Found {results.length} {results.length === 1 ? 'result' : 'results'}
             </h2>
-            <div className="relative w-full flex justify-center">
-              <div className="overflow-x-auto scrollbar-hide py-4 w-full max-w-6xl">
-                <div className="flex gap-6 items-start px-2" style={{minHeight:320}}>
+            <div className="relative w-full">
+              <div className="overflow-x-auto py-4 w-full">
+                <div
+                  className="flex flex-row flex-nowrap items-start px-4"
+                  style={{minHeight:320, whiteSpace: 'nowrap'}}
+                >
                   {results.map(m => (
-                    <div key={m.id || m._id} className="flex-shrink-0" style={{width:170}}>
+                    <div key={m.id || m._id} className="flex-shrink-0 inline-block" style={{width:170}}>
                       <MovieCard movie={m} />
                     </div>
                   ))}
