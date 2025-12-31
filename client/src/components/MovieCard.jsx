@@ -24,13 +24,18 @@ export default function MovieCard({movie}){
       alert('Failed to add')
     }
   }
+  import { Link } from "react-router-dom"
 
   return (
-    <div style={{width:200,border:'1px solid #ddd',padding:8}}>
-      {poster ? <img src={poster} alt={movie.title} style={{width:'100%'}}/> : <div style={{height:300,background:'#eee'}}/>}
-      <h4 style={{fontSize:14,margin:'8px 0 4px'}}>{movie.title}</h4>
-      <div style={{fontSize:12,color:'#666'}}>{movie.release_date}</div>
-      <button onClick={add} style={{marginTop:8}}>Add to To Watch</button>
-    </div>
-  )
+      <div style={{width:200,border:'1px solid #ddd',padding:8}}>
+        {poster ? (
+          <Link to={`/movie/${movie.id || movie._id}`}>
+            <img src={poster} alt={movie.title} style={{width:'100%'}}/>
+          </Link>
+        ) : <div style={{height:300,background:'#eee'}}/>}
+        <h4 style={{fontSize:14,margin:'8px 0 4px'}}>{movie.title}</h4>
+        <div style={{fontSize:12,color:'#666'}}>{movie.release_date}</div>
+        <button onClick={add} style={{marginTop:8}}>Add to To Watch</button>
+      </div>
+    )
 }
