@@ -44,6 +44,38 @@ router.get("/search", async (req,res)=>{
   }
 })
 
+// TMDB details endpoint: /api/movies/details/:tmdbId
+router.get('/details/:id', async (req, res) => {
+  try{
+    const key = process.env.TMDB_KEY
+    if(!key) return res.status(400).json({ error: 'TMDB_KEY not configured' })
+    const url = `https://api.themoviedb.org/3/movie/${encodeURIComponent(req.params.id)}?api_key=${key}`
+    const resp = await fetch(url)
+    const data = await resp.json()
+    if(!resp.ok) return res.status(resp.status).json(data)
+    return res.json(data)
+  }catch(err){
+    console.error('Details error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Details failed', detail: err.message })
+  }
+})
+
+// TMDB credits endpoint: /api/movies/credits/:tmdbId
+router.get('/credits/:id', async (req, res) => {
+  try{
+    const key = process.env.TMDB_KEY
+    if(!key) return res.status(400).json({ error: 'TMDB_KEY not configured' })
+    const url = `https://api.themoviedb.org/3/movie/${encodeURIComponent(req.params.id)}/credits?api_key=${key}`
+    const resp = await fetch(url)
+    const data = await resp.json()
+    if(!resp.ok) return res.status(resp.status).json(data)
+    return res.json(data)
+  }catch(err){
+    console.error('Credits error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Credits failed', detail: err.message })
+  }
+})
+
 router.post("/add", async(req,res)=>{
   try{
     if(isDbReady()){
