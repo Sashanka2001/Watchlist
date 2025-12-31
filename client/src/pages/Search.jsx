@@ -76,13 +76,17 @@ export default function Search(){
             <h2 className="text-xl font-semibold text-white mb-6">
               Found {results.length} {results.length === 1 ? 'result' : 'results'}
             </h2>
-            <div className="overflow-x-auto py-4 w-full">
-              <div className="inline-flex gap-4 items-start">
-                {results.map(m => (
-                  <div key={m.id || m._id} className="flex-shrink-0">
-                    <MovieCard movie={m} />
-                  </div>
-                ))}
+            <div className="relative w-full flex justify-center">
+              <div className="overflow-x-auto scrollbar-hide py-4 w-full max-w-6xl">
+                <div className="flex gap-6 items-start px-2" style={{minHeight:320}}>
+                  {results.map(m => (
+                    <div key={m.id || m._id} className="flex-shrink-0" style={{width:170}}>
+                      <MovieCard movie={m} />
+                    </div>
+                  ))}
+                </div>
+                {/* Right fade effect */}
+                <div style={{position:'absolute',top:0,right:0,width:60,height:'100%',pointerEvents:'none',background:'linear-gradient(to right,rgba(0,0,0,0),#18181b 80%)'}} />
               </div>
             </div>
           </div>
