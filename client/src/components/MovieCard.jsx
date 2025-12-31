@@ -26,8 +26,6 @@ export default function MovieCard({movie}){
       alert('Failed to add')
     }
   }
-  import { Link } from "react-router-dom"
-
   return (
       <div style={{width:200,border:'1px solid #ddd',padding:8}}>
         {poster ? (
