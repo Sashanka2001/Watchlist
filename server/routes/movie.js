@@ -1,6 +1,8 @@
 import express from "express"
 import mongoose from "mongoose"
 import Movie from "../models/Movie.js"
+import fs from "fs/promises"
+import path from "path"
 const router = express.Router()
 
 // In-memory fallback store used when MongoDB is not connected
@@ -19,7 +21,15 @@ router.get("/search", async (req,res)=>{
   if(!q) return res.json([])
   try{
     const key = process.env.TMDB_KEY
-    if(!key) return res.status(400).json({ error: 'TMDB_KEY not configured' })
+    if(!key){
+      // no TMDB key: use local mock dataset
+      const file = path.resolve(new URL('../data/mock_movies.json', import.meta.url))
+      const txt = await fs.readFile(file, 'utf-8')
+      const items = JSON.parse(txt)
+      const qlow = q.toLowerCase()
+      const results = items.filter(it => (it.title||'').toLowerCase().includes(qlow)).slice(0,20)
+      return res.json(results)
+    }
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${encodeURIComponent(q)}`
     const resp = await fetch(url)
     const data = await resp.json()
