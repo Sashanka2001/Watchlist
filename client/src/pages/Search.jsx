@@ -76,8 +76,8 @@ export default function Search(){
             <h2 className="text-xl font-semibold text-white mb-6">
               Found {results.length} {results.length === 1 ? 'result' : 'results'}
             </h2>
-            <div className="overflow-x-auto py-4">
-              <div className="flex gap-4 items-start">
+            <div className="overflow-x-auto py-4 w-full">
+              <div className="inline-flex gap-4 items-start">
                 {results.map(m => (
                   <div key={m.id || m._id} className="flex-shrink-0">
                     <MovieCard movie={m} />
