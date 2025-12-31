@@ -12,8 +12,12 @@ export default function MovieCard({movie}){
         status: "TO_WATCH"
       }
       const res = await fetch('/api/movies/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
-      if(!res.ok) throw new Error('Add failed')
       const data = await res.json()
+      if(!res.ok){
+        console.error('Add movie error', data)
+        alert(data.error || data.detail || 'Failed to add movie')
+        return
+      }
       alert('Added to list')
     }catch(err){
       console.error(err)
