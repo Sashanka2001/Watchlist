@@ -1,20 +1,6 @@
 import { useState } from "react"
 import { Search as SearchIcon, Film } from "lucide-react"
-
-// Mock MovieCard component for demonstration
-function MovieCard({ movie }) {
-  return (
-    <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-      <div className="aspect-[2/3] bg-gray-700 flex items-center justify-center">
-        <Film className="w-12 h-12 text-gray-600" />
-      </div>
-      <div className="p-3">
-        <h3 className="font-semibold text-white text-sm line-clamp-2">{movie.title}</h3>
-        {movie.year && <p className="text-gray-400 text-xs mt-1">{movie.year}</p>}
-      </div>
-    </div>
-  )
-}
+import MovieCard from "../components/MovieCard.jsx"
 
 export default function Search(){
   const [q, setQ] = useState("")
