@@ -10,7 +10,13 @@ export default function MyList(){
     try{
       const res = await fetch('/api/movies/demo')
       const data = await res.json()
-      setMovies(data)
+      if(!res.ok){
+        console.error('Load my list error', data)
+        alert(data.error || data.detail || 'Failed to load list')
+        setMovies([])
+      }else{
+        setMovies(Array.isArray(data) ? data : [])
+      }
     }catch(err){
       console.error(err)
       setMovies([])
