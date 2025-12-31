@@ -27,15 +27,30 @@ export default function MovieCard({movie}){
     }
   }
   return (
-      <div style={{width:200,border:'1px solid #ddd',padding:8}}>
-        {poster ? (
-          <Link to={`/movie/${movie.id || movie._id}`}>
-            <img src={poster} alt={movie.title} style={{width:'100%'}}/>
-          </Link>
-        ) : <div style={{height:300,background:'#eee'}}/>}
-        <h4 style={{fontSize:14,margin:'8px 0 4px'}}>{movie.title}</h4>
-        <div style={{fontSize:12,color:'#666'}}>{movie.release_date}</div>
-        <button onClick={add} style={{marginTop:8}}>Add to To Watch</button>
-      </div>
-    )
+    <div
+      className="bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center"
+      style={{width:160, minHeight:290, padding:12, cursor:'pointer'}}
+    >
+      {poster ? (
+        <Link to={`/movie/${movie.id || movie._id}`} className="block w-full">
+          <img
+            src={poster}
+            alt={movie.title}
+            className="rounded-lg w-full h-60 object-cover mb-2"
+            style={{background:'#222'}}
+          />
+        </Link>
+      ) : (
+        <div className="w-full h-60 bg-gray-700 rounded-lg mb-2" />
+      )}
+      <h4 className="text-white text-base font-semibold text-center line-clamp-2 mb-1" style={{minHeight:40}}>{movie.title}</h4>
+      <div className="text-gray-400 text-xs mb-2">{movie.release_date}</div>
+      <button
+        onClick={add}
+        className="mt-auto px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-xs font-medium transition-colors"
+      >
+        Add to To Watch
+      </button>
+    </div>
+  )
 }
