@@ -25,8 +25,8 @@ router.get("/search", async (req,res)=>{
     const data = await resp.json()
     res.json(data.results || [])
   }catch(err){
-    console.error(err)
-    res.status(500).json({ error: 'Search failed' })
+    console.error('Search error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Search failed', detail: err.message })
   }
 })
 
@@ -41,8 +41,8 @@ router.post("/add", async(req,res)=>{
     memoryStore.push(doc)
     return res.json(doc)
   }catch(err){
-    console.error(err)
-    res.status(500).json({ error: 'Add failed' })
+    console.error('Add error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Add failed', detail: err.message })
   }
 })
 
@@ -59,8 +59,8 @@ router.put("/status/:id", async(req,res)=>{
     memoryStore[idx].status = req.body.status
     return res.json(memoryStore[idx])
   }catch(err){
-    console.error(err)
-    res.status(500).json({ error: 'Update status failed' })
+    console.error('Update status error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Update status failed', detail: err.message })
   }
 })
 
@@ -76,8 +76,8 @@ router.put("/rate/:id", async(req,res)=>{
     memoryStore[idx].rating = Number(req.body.rating)
     return res.json(memoryStore[idx])
   }catch(err){
-    console.error(err)
-    res.status(500).json({ error: 'Rate failed' })
+    console.error('Rate error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Rate failed', detail: err.message })
   }
 })
 
@@ -91,8 +91,8 @@ router.get("/:userId", async(req,res)=>{
     const movies = memoryStore.filter(m=>String(m.userId)===String(req.params.userId))
     return res.json(movies)
   }catch(err){
-    console.error(err)
-    res.status(500).json({ error: 'Fetch user movies failed' })
+    console.error('Fetch user movies error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Fetch user movies failed', detail: err.message })
   }
 })
 
