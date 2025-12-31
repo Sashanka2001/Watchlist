@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function MovieCard({movie}){
   const posterBase = "https://image.tmdb.org/t/p/w200"
   const poster = movie.poster_path ? posterBase+movie.poster_path : movie.poster || ""
