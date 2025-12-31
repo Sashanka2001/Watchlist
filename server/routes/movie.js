@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import Movie from "../models/Movie.js"
 import fs from "fs/promises"
 import path from "path"
+import { fileURLToPath } from 'url'
 const router = express.Router()
 
 // In-memory fallback store used when MongoDB is not connected
@@ -23,7 +24,10 @@ router.get("/search", async (req,res)=>{
     const key = process.env.TMDB_KEY
     if(!key){
       // no TMDB key: use local mock dataset
-      const file = path.resolve(new URL('../data/mock_movies.json', import.meta.url))
+      const __filename = fileURLToPath(import.meta.url)
+      const __dirname = path.dirname(__filename)
+      const file = path.resolve(__dirname, '..', 'data', 'mock_movies.json')
+      console.log('TMDB_KEY not set — using mock dataset at', file)
       const txt = await fs.readFile(file, 'utf-8')
       const items = JSON.parse(txt)
       const qlow = q.toLowerCase()
