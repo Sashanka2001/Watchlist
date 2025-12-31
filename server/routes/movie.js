@@ -48,7 +48,18 @@ router.get("/search", async (req,res)=>{
 router.get('/details/:id', async (req, res) => {
   try{
     const key = process.env.TMDB_KEY
-    if(!key) return res.status(400).json({ error: 'TMDB_KEY not configured' })
+    if(!key){
+      // fallback to mock data
+      const __filename = fileURLToPath(import.meta.url)
+      const __dirname = path.dirname(__filename)
+      const file = path.resolve(__dirname, '..', 'data', 'mock_movies.json')
+      console.log('TMDB_KEY not set — returning mock details from', file)
+      const txt = await fs.readFile(file, 'utf-8')
+      const items = JSON.parse(txt)
+      const found = items.find(it => String(it.id) === String(req.params.id))
+      if(!found) return res.status(404).json({ error: 'Not found in mock data' })
+      return res.json(found)
+    }
     const url = `https://api.themoviedb.org/3/movie/${encodeURIComponent(req.params.id)}?api_key=${key}`
     const resp = await fetch(url)
     const data = await resp.json()
@@ -64,7 +75,18 @@ router.get('/details/:id', async (req, res) => {
 router.get('/credits/:id', async (req, res) => {
   try{
     const key = process.env.TMDB_KEY
-    if(!key) return res.status(400).json({ error: 'TMDB_KEY not configured' })
+    if(!key){
+      // fallback: return empty credits or a small mock cast
+      const __filename = fileURLToPath(import.meta.url)
+      const __dirname = path.dirname(__filename)
+      const file = path.resolve(__dirname, '..', 'data', 'mock_movies.json')
+      console.log('TMDB_KEY not set — returning mock credits from', file)
+      const txt = await fs.readFile(file, 'utf-8')
+      const items = JSON.parse(txt)
+      const found = items.find(it => String(it.id) === String(req.params.id))
+      const mockCast = found ? [ { cast_id:1, name: 'Actor 1', character: 'Role 1', profile_path: null } ] : []
+      return res.json({ id: req.params.id, cast: mockCast, crew: [] })
+    }
     const url = `https://api.themoviedb.org/3/movie/${encodeURIComponent(req.params.id)}/credits?api_key=${key}`
     const resp = await fetch(url)
     const data = await resp.json()
