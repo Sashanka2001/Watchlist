@@ -13,7 +13,13 @@ export default function Search(){
     try{
       const res = await fetch(`/api/movies/search?q=${encodeURIComponent(q)}`)
       const data = await res.json()
-      setResults(data)
+      if(!res.ok){
+        console.error('Search error', data)
+        setResults([])
+        alert(data.error || data.detail || 'Search failed')
+      }else{
+        setResults(Array.isArray(data) ? data : (data.results || []))
+      }
     }catch(err){
       console.error(err)
       setResults([])
@@ -29,8 +35,8 @@ export default function Search(){
       </form>
       {loading && <div>Searching…</div>}
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,200px)',gap:12}}>
-        {results.map(m=> (
-          <MovieCard key={m.id} movie={m} />
+        {(Array.isArray(results) ? results : []).map(m=> (
+          <MovieCard key={m.id || m._id} movie={m} />
         ))}
       </div>
     </div>
