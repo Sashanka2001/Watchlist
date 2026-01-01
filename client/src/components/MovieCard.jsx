@@ -32,7 +32,7 @@ export default function MovieCard({movie}){
       style={{
         width: '100%',
         minHeight: 290,
-        padding: 8,
+        padding: 2,
         cursor: 'pointer',
         boxSizing: 'border-box',
         overflow: 'hidden',
