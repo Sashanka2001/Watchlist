@@ -57,7 +57,7 @@ export default function Watched() {
               {movies.map(m => (
                 <div key={m._id} style={{flex: '0 0 auto', width: 176, scrollSnapAlign: 'start'}}>
                   <div style={{padding:8, borderRadius:12, border:'1px solid rgba(255,255,255,0.06)', background:'rgba(255,255,255,0.02)', boxSizing:'border-box', overflow:'hidden'}}>
-                    <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} />
+                    <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} hideAdd={true} />
                     <div className="flex items-center justify-center mt-3 mb-2">
                       {[1,2,3,4,5].map(i => (
                         <svg
