@@ -93,9 +93,18 @@ export default function Search(){
                 {results.map(m => (
                   <div
                     key={m.id || m._id}
-                    style={{flex: '0 0 auto', width: 180, scrollSnapAlign: 'start'}}
+                    style={{flex: '0 0 auto', width: 176, scrollSnapAlign: 'start'}}
                   >
-                    <MovieCard movie={m} />
+                    <div
+                      style={{
+                        padding: 8,
+                        borderRadius: 12,
+                        border: '1px solid rgba(255,255,255,0.06)',
+                        background: 'rgba(255,255,255,0.02)'
+                      }}
+                    >
+                      <MovieCard movie={m} />
+                    </div>
                   </div>
                 ))}
               </div>
