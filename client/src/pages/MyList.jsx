@@ -56,17 +56,26 @@ export default function MyList(){
     const styles = {
       WATCHING: "bg-blue-500/20 text-blue-400 border-blue-500/30",
       WATCHED: "bg-green-500/20 text-green-400 border-green-500/30",
-      PLAN_TO_WATCH: "bg-purple-500/20 text-purple-400 border-purple-500/30"
+      PLAN_TO_WATCH: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+      TO_WATCH: "bg-gray-700/20 text-gray-300 border-gray-600/30"
     }
     const icons = {
       WATCHING: <Eye className="w-3 h-3" />,
       WATCHED: <CheckCircle className="w-3 h-3" />,
-      PLAN_TO_WATCH: <Film className="w-3 h-3" />
+      PLAN_TO_WATCH: <Film className="w-3 h-3" />,
+      TO_WATCH: <Film className="w-3 h-3" />
     }
+    const labels = {
+      WATCHING: 'Watching',
+      WATCHED: 'Watched',
+      PLAN_TO_WATCH: 'Plan to Watch',
+      TO_WATCH: 'To watch'
+    }
+    const label = labels[status] || (status ? status.replace(/_/g, ' ').toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase()) : '')
     return (
-      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${styles[status] || styles.PLAN_TO_WATCH}`}>
-        {icons[status] || icons.PLAN_TO_WATCH}
-        {status === 'PLAN_TO_WATCH' ? 'Plan to Watch' : status.charAt(0) + status.slice(1).toLowerCase()}
+      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${styles[status] || styles.TO_WATCH}`}>
+        {icons[status] || icons.TO_WATCH}
+        {label}
       </div>
     )
   }
