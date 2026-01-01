@@ -97,64 +97,58 @@ export default function MyList(){
             <div className="mb-6 text-gray-400">
               {movies.length} {movies.length === 1 ? 'movie' : 'movies'} in your list
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-              {movies.map(m => (
-                <div key={m._id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
-                  <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} />
-                  
-                  <div className="p-4">
-                    <h3 className="font-semibold text-white text-sm mb-3 line-clamp-2">{m.title}</h3>
-                    
-                    {/* Status Badge */}
-                    <div className="mb-4">
-                      {getStatusBadge(m.status)}
-                    </div>
-
-                    {/* Status Buttons */}
-                    <div className="flex gap-2 mb-4">
-                      {m.status !== 'WATCHING' && (
-                        <button 
-                          onClick={() => updateStatus(m._id, 'WATCHING')}
-                          className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center gap-1.5"
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                          Watching
-                        </button>
-                      )}
-                      {m.status !== 'WATCHED' && (
-                        <button 
-                          onClick={() => updateStatus(m._id, 'WATCHED')}
-                          className="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center gap-1.5"
-                        >
-                          <CheckCircle className="w-3.5 h-3.5" />
-                          Watched
-                        </button>
-                      )}
-                    </div>
-
-                    {/* Rating */}
-                    <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50">
-                      <label className="text-xs text-gray-400 mb-2 block flex items-center gap-1.5">
-                        <Star className="w-3.5 h-3.5 fill-yellow-500 text-yellow-500" />
-                        Your Rating
-                      </label>
-                      <div className="flex items-center gap-2">
-                        <input 
-                          type="range" 
-                          min={0} 
-                          max={10} 
-                          value={m.rating || 0} 
-                          onChange={e => updateRating(m._id, e.target.value)}
-                          className="flex-1 h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-yellow-500"
-                        />
-                        <span className="text-white font-bold text-sm min-w-[35px] text-center bg-gray-700 px-2 py-1 rounded">
-                          {m.rating || 0}/10
-                        </span>
+            <div style={{position:'relative', width:'100%'}}>
+              <div
+                role="region"
+                aria-label="My list"
+                style={{
+                  display: 'flex',
+                  gap: 24,
+                  overflowX: 'auto',
+                  padding: '16px 24px',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollSnapType: 'x mandatory'
+                }}
+              >
+                {movies.map(m => (
+                  <div key={m._id} style={{flex: '0 0 auto', width: 360, scrollSnapAlign: 'start'}}>
+                    <div style={{padding:8, borderRadius:12, border:'1px solid rgba(255,255,255,0.06)', background:'rgba(255,255,255,0.02)', boxSizing:'border-box', overflow:'hidden'}}>
+                      <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
+                        <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} />
+                        <div className="p-4">
+                          <h3 className="font-semibold text-white text-sm mb-3 line-clamp-2">{m.title}</h3>
+                          <div className="mb-4">{getStatusBadge(m.status)}</div>
+                          <div className="flex gap-2 mb-4">
+                            {m.status !== 'WATCHING' && (
+                              <button onClick={() => updateStatus(m._id, 'WATCHING')} className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center gap-1.5">
+                                <Eye className="w-3.5 h-3.5" />
+                                Watching
+                              </button>
+                            )}
+                            {m.status !== 'WATCHED' && (
+                              <button onClick={() => updateStatus(m._id, 'WATCHED')} className="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center gap-1.5">
+                                <CheckCircle className="w-3.5 h-3.5" />
+                                Watched
+                              </button>
+                            )}
+                          </div>
+                          <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50">
+                            <label className="text-xs text-gray-400 mb-2 block flex items-center gap-1.5">
+                              <Star className="w-3.5 h-3.5 fill-yellow-500 text-yellow-500" />
+                              Your Rating
+                            </label>
+                            <div className="flex items-center gap-2">
+                              <input type="range" min={0} max={10} value={m.rating || 0} onChange={e => updateRating(m._id, e.target.value)} className="flex-1 h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-yellow-500" />
+                              <span className="text-white font-bold text-sm min-w-[35px] text-center bg-gray-700 px-2 py-1 rounded">{m.rating || 0}/10</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div style={{position:'absolute',top:0,right:0,width:64,height:'100%',pointerEvents:'none',background:'linear-gradient(to right, rgba(0,0,0,0), rgba(24,24,27,0.95))'}} />
             </div>
           </div>
         )}
