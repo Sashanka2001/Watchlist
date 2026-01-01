@@ -159,7 +159,7 @@ export default function MyList(){
                                   fill={(m.rating || 0) >= i*2 ? '#facc15' : 'none'}
                                   stroke="#facc15"
                                   strokeWidth="1.5"
-                                  className="w-4 h-4"
+                                  className="w-1 h-1"
                                   style={{display:'inline'}}
                                 >
                                   <polygon points="10,2 12.59,7.36 18.51,7.97 14,12.14 15.18,18.02 10,15.1 4.82,18.02 6,12.14 1.49,7.97 7.41,7.36" />
