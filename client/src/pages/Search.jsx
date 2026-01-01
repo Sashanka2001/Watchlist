@@ -28,7 +28,6 @@ export default function Search(){
   }
 
   return (
-
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
       <div className="w-full max-w-3xl mx-auto px-4 py-12 sm:px-8 lg:px-12">
         {/* Glassmorphism Card */}
@@ -65,91 +64,91 @@ export default function Search(){
             </div>
           </form>
 
-          {/* Results, Loading, No Results, Initial State (moved inside card) */}
-
-        {/* Loading State */}
-        {loading && (
-          <div className="flex flex-col items-center justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mb-4"></div>
-            <p className="text-gray-400">Searching for movies...</p>
-          </div>
-        )}
-
-        {/* Results (horizontal scroll row) */}
-        {!loading && results.length > 0 && (
-          <div>
-            <h2 className="text-xl font-semibold text-white mb-6">
-              Found {results.length} {results.length === 1 ? 'result' : 'results'}
-            </h2>
-
-            <div style={{position:'relative', width:'100%'}}>
-              <div
-                role="region"
-                aria-label="Search results"
-                style={{
-                  display: 'flex',
-                  gap: 24,
-                  overflowX: 'auto',
-                  padding: '16px 24px',
-                  WebkitOverflowScrolling: 'touch',
-                  scrollSnapType: 'x mandatory'
-                }}
-              >
-                {results.map(m => (
-                  <div
-                    key={m.id || m._id}
-                    style={{flex: '0 0 auto', width: 176, scrollSnapAlign: 'start'}}
-                  >
-                    <div
-                      style={{
-                        padding: 8,
-                        borderRadius: 12,
-                        border: '1px solid rgba(255,255,255,0.06)',
-                        background: 'rgba(255,255,255,0.02)',
-                        overflow: 'hidden',
-                        boxSizing: 'border-box'
-                      }}
-                    >
-                      <MovieCard movie={m} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Right fade effect */}
-              <div
-                aria-hidden
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  width: 64,
-                  height: '100%',
-                  pointerEvents: 'none',
-                  background: 'linear-gradient(to right, rgba(0,0,0,0), rgba(24,24,27,0.95))'
-                }}
-              />
+          {/* Results, Loading, No Results, Initial State (all inside card) */}
+          {/* Loading State */}
+          {loading && (
+            <div className="flex flex-col items-center justify-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mb-4"></div>
+              <p className="text-gray-400">Searching for movies...</p>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* No Results */}
-        {!loading && q && results.length === 0 && (
-          <div className="text-center py-12">
-            <Film className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-300 mb-2">No movies found</h3>
-            <p className="text-gray-500">Try searching with different keywords</p>
-          </div>
-        )}
+          {/* Results (horizontal scroll row) */}
+          {!loading && results.length > 0 && (
+            <div>
+              <h2 className="text-xl font-semibold text-white mb-6">
+                Found {results.length} {results.length === 1 ? 'result' : 'results'}
+              </h2>
 
-        {/* Initial State */}
-        {!loading && !q && results.length === 0 && (
-          <div className="text-center py-12">
-            <SearchIcon className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-300 mb-2">Start your search</h3>
-            <p className="text-gray-500">Enter a movie title above to begin</p>
-          </div>
-        )}
+              <div style={{position:'relative', width:'100%'}}>
+                <div
+                  role="region"
+                  aria-label="Search results"
+                  style={{
+                    display: 'flex',
+                    gap: 24,
+                    overflowX: 'auto',
+                    padding: '16px 24px',
+                    WebkitOverflowScrolling: 'touch',
+                    scrollSnapType: 'x mandatory'
+                  }}
+                >
+                  {results.map(m => (
+                    <div
+                      key={m.id || m._id}
+                      style={{flex: '0 0 auto', width: 176, scrollSnapAlign: 'start'}}
+                    >
+                      <div
+                        style={{
+                          padding: 8,
+                          borderRadius: 12,
+                          border: '1px solid rgba(255,255,255,0.06)',
+                          background: 'rgba(255,255,255,0.02)',
+                          overflow: 'hidden',
+                          boxSizing: 'border-box'
+                        }}
+                      >
+                        <MovieCard movie={m} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Right fade effect */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: 64,
+                    height: '100%',
+                    pointerEvents: 'none',
+                    background: 'linear-gradient(to right, rgba(0,0,0,0), rgba(24,24,27,0.95))'
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* No Results */}
+          {!loading && q && results.length === 0 && (
+            <div className="text-center py-12">
+              <Film className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-300 mb-2">No movies found</h3>
+              <p className="text-gray-500">Try searching with different keywords</p>
+            </div>
+          )}
+
+          {/* Initial State */}
+          {!loading && !q && results.length === 0 && (
+            <div className="text-center py-12">
+              <SearchIcon className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-300 mb-2">Start your search</h3>
+              <p className="text-gray-500">Enter a movie title above to begin</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
