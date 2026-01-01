@@ -57,5 +57,5 @@ For endpoints requiring authentication, include header: `Authorization: Bearer <
 - If Mongo fails to connect, verify `MONGO_URI` and Atlas IP whitelist (if using Atlas).
 - Ensure `JWT_SECRET` is set for authentication routes.
 
-If you'd like, I can add example `curl` commands or a Postman collection for all endpoints.
+ 
 
