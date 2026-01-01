@@ -29,7 +29,7 @@ export default function MovieCard({movie}){
   return (
     <div
       className="bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center"
-      style={{width:160, minHeight:290, padding:12, cursor:'pointer'}}
+      style={{width: '100%', minHeight:290, padding:12, cursor:'pointer', boxSizing: 'border-box'}}
     >
       {poster ? (
         <Link to={`/movie/${movie.id || movie._id}`} className="block w-full">

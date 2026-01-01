@@ -100,7 +100,9 @@ export default function Search(){
                         padding: 8,
                         borderRadius: 12,
                         border: '1px solid rgba(255,255,255,0.06)',
-                        background: 'rgba(255,255,255,0.02)'
+                        background: 'rgba(255,255,255,0.02)',
+                        overflow: 'hidden',
+                        boxSizing: 'border-box'
                       }}
                     >
                       <MovieCard movie={m} />
