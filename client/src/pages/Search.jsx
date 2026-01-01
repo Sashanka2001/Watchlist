@@ -70,27 +70,48 @@ export default function Search(){
           </div>
         )}
 
-        {/* Results */}
+        {/* Results (horizontal scroll row) */}
         {!loading && results.length > 0 && (
           <div>
             <h2 className="text-xl font-semibold text-white mb-6">
               Found {results.length} {results.length === 1 ? 'result' : 'results'}
             </h2>
-            <div className="relative w-full">
-              <div className="overflow-x-auto py-4 w-full">
-                <div
-                  className="flex flex-row flex-nowrap items-start px-4"
-                  style={{minHeight:320, whiteSpace: 'nowrap'}}
-                >
-                  {results.map(m => (
-                    <div key={m.id || m._id} className="flex-shrink-0 inline-block" style={{width:170}}>
-                      <MovieCard movie={m} />
-                    </div>
-                  ))}
-                </div>
-                {/* Right fade effect */}
-                <div style={{position:'absolute',top:0,right:0,width:60,height:'100%',pointerEvents:'none',background:'linear-gradient(to right,rgba(0,0,0,0),#18181b 80%)'}} />
+
+            <div style={{position:'relative', width:'100%'}}>
+              <div
+                role="region"
+                aria-label="Search results"
+                style={{
+                  display: 'flex',
+                  gap: 16,
+                  overflowX: 'auto',
+                  padding: '12px 8px',
+                  WebkitOverflowScrolling: 'touch'
+                }}
+              >
+                {results.map(m => (
+                  <div
+                    key={m.id || m._id}
+                    style={{flex: '0 0 auto', width: 170, scrollSnapAlign: 'start'}}
+                  >
+                    <MovieCard movie={m} />
+                  </div>
+                ))}
               </div>
+
+              {/* Right fade effect */}
+              <div
+                aria-hidden
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: 64,
+                  height: '100%',
+                  pointerEvents: 'none',
+                  background: 'linear-gradient(to right, rgba(0,0,0,0), rgba(24,24,27,0.95))'
+                }}
+              />
             </div>
           </div>
         )}
