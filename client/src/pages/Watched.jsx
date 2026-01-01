@@ -25,6 +25,24 @@ export default function Watched() {
     load();
   }, []);
 
+  // Add updateRating function for rating
+  async function updateRating(id, value) {
+    try {
+      await fetch(`/api/movies/rate/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rating: Number(value) })
+      });
+      // Update UI after rating
+      setMovies(movies =>
+        movies.map(m => m._id === id ? { ...m, rating: Number(value) } : m)
+      );
+    } catch (err) {
+      console.error(err);
+      alert('Failed to update rating');
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
@@ -60,23 +78,29 @@ export default function Watched() {
                     <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} hideAdd={true} />
                     <div className="flex items-center justify-center mt-3 mb-2">
                       {[1,2,3,4,5].map(i => (
-                        <svg
+                        <button
                           key={i}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill={(m.rating || 0) >= i*2 ? '#facc15' : 'none'}
-                          stroke="#facc15"
-                          strokeWidth="1.5"
-                          className="w-3 h-3"
-                          style={{
-                             width: "1.5em",
-                             height: "1.5em",
-                             display: "inline-block",
-                             verticalAlign: "middle"
-                        }}
+                          onClick={() => updateRating(m._id, i*2)}
+                          style={{background:'none',border:'none',padding:0,margin:0,cursor:'pointer',lineHeight:0}}
+                          aria-label={`Rate ${i} star${i>1?'s':''}`}
                         >
-                          <polygon points="10,2 12.59,7.36 18.51,7.97 14,12.14 15.18,18.02 10,15.1 4.82,18.02 6,12.14 1.49,7.97 7.41,7.36" />
-                        </svg>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill={(m.rating || 0) >= i*2 ? '#facc15' : 'none'}
+                            stroke="#facc15"
+                            strokeWidth="1.5"
+                            className="w-3 h-3"
+                            style={{
+                              width: "1.5em",
+                              height: "1.5em",
+                              display: "inline-block",
+                              verticalAlign: "middle"
+                            }}
+                          >
+                            <polygon points="10,2 12.59,7.36 18.51,7.97 14,12.14 15.18,18.02 10,15.1 4.82,18.02 6,12.14 1.49,7.97 7.41,7.36" />
+                          </svg>
+                        </button>
                       ))}
                     </div>
                   </div>
