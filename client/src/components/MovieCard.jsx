@@ -29,7 +29,15 @@ export default function MovieCard({movie}){
   return (
     <div
       className="bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center"
-      style={{width: '100%', minHeight:290, padding:12, cursor:'pointer', boxSizing: 'border-box'}}
+      style={{
+        width: '100%',
+        minHeight: 290,
+        padding: 12,
+        cursor: 'pointer',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        transformOrigin: 'center center'
+      }}
     >
       {poster ? (
         <Link to={`/movie/${movie.id || movie._id}`} className="block w-full">
@@ -37,7 +45,7 @@ export default function MovieCard({movie}){
             src={poster}
             alt={movie.title}
             className="rounded-lg w-full h-60 object-cover mb-2"
-            style={{background:'#222'}}
+            style={{display: 'block', margin: 0, background: '#222', objectPosition: 'center center'}}
           />
         </Link>
       ) : (
