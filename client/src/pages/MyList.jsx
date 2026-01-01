@@ -150,23 +150,24 @@ export default function MyList(){
                             {/* Removed 'Your Rating' label */}
                             <div className="flex items-center gap-1">
                               {[1,2,3,4,5].map(i => (
-                                <svg
+                                <button
                                   key={i}
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 20 20"
-                                  fill={(m.rating || 0) >= i*2 ? '#facc15' : 'none'}
-                                  stroke="#facc15"
-                                  strokeWidth="1.5"
-                                  className="w-1 h-1"
-                                  style={{
-                                     width: "1.5em",
-                                     height: "1.5em",
-                                     display: "inline-block",
-                                     verticalAlign: "middle"
-                                  }}
+                                  onClick={() => updateRating(m._id, i*2)}
+                                  style={{background:'none',border:'none',padding:0,margin:0,cursor:'pointer',lineHeight:0}}
+                                  aria-label={`Rate ${i} star${i>1?'s':''}`}
                                 >
-                                  <polygon points="10,2 12.59,7.36 18.51,7.97 14,12.14 15.18,18.02 10,15.1 4.82,18.02 6,12.14 1.49,7.97 7.41,7.36" />
-                                </svg>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill={(m.rating || 0) >= i*2 ? '#facc15' : 'none'}
+                                    stroke="#facc15"
+                                    strokeWidth="1.5"
+                                    className="w-3 h-3"
+                                    style={{display:'inline'}}
+                                  >
+                                    <polygon points="10,2 12.59,7.36 18.51,7.97 14,12.14 15.18,18.02 10,15.1 4.82,18.02 6,12.14 1.49,7.97 7.41,7.36" />
+                                  </svg>
+                                </button>
                               ))}
                             </div>
                           </div>
