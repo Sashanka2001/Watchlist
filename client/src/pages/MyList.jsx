@@ -147,9 +147,7 @@ export default function MyList(){
                             )}
                           </div>
                           <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50 flex flex-col items-center">
-                            <label className="text-xs text-gray-400 mb-2 block flex items-center gap-1.5">
-                              Your Rating
-                            </label>
+                            {/* Removed 'Your Rating' label */}
                             <div className="flex items-center gap-1">
                               {[1,2,3,4,5].map(i => (
                                 <svg
