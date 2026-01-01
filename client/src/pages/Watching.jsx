@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 
 export default function Watching() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [updatingId, setUpdatingId] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function load() {
@@ -58,7 +61,32 @@ export default function Watching() {
                 <div key={m._id} style={{flex: '0 0 auto', width: 176, scrollSnapAlign: 'start'}}>
                   <div style={{padding:8, borderRadius:12, border:'1px solid rgba(255,255,255,0.06)', background:'rgba(255,255,255,0.02)', boxSizing:'border-box', overflow:'hidden'}}>
                     <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} />
-                    {/* rating removed on Watching page */}
+                    <div className="p-3 flex items-center justify-center">
+                      <button
+                        onClick={async () => {
+                          if (updatingId) return;
+                          setUpdatingId(m._id);
+                          try {
+                            const res = await fetch(`/api/movies/status/${m._id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'WATCHED' }) });
+                            if (res.ok) {
+                              navigate('/watched');
+                            } else {
+                              const data = await res.json().catch(() => ({}));
+                              alert(data.error || data.detail || 'Failed to update status');
+                            }
+                          } catch (err) {
+                            console.error(err);
+                            alert('Failed to update status');
+                          } finally {
+                            setUpdatingId(null);
+                          }
+                        }}
+                        className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md text-sm font-medium"
+                        disabled={updatingId === m._id}
+                      >
+                        {updatingId === m._id ? 'Updating...' : 'Mark as Watched'}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
