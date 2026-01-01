@@ -114,10 +114,10 @@ export default function MyList(){
         )}
 
         {/* Movies Grid */}
-        {!loading && movies.length > 0 && (
+        {!loading && movies.filter(m => m.status !== 'WATCHING' && m.status !== 'WATCHED').length > 0 && (
           <div>
             <div className="mb-6 text-gray-400">
-              {movies.length} {movies.length === 1 ? 'movie' : 'movies'} in your list
+              {movies.filter(m => m.status !== 'WATCHING' && m.status !== 'WATCHED').length} {movies.filter(m => m.status !== 'WATCHING' && m.status !== 'WATCHED').length === 1 ? 'movie' : 'movies'} in your list
             </div>
             <div style={{position:'relative', width:'100%'}}>
               <div
@@ -132,7 +132,7 @@ export default function MyList(){
                   scrollSnapType: 'x mandatory'
                 }}
               >
-                {movies.map(m => (
+                {movies.filter(m => m.status !== 'WATCHING' && m.status !== 'WATCHED').map(m => (
                   <div key={m._id} style={{flex: '0 0 auto', width: 360, scrollSnapAlign: 'start'}}>
                     <div style={{padding:8, borderRadius:12, border:'1px solid rgba(255,255,255,0.06)', background:'rgba(255,255,255,0.02)', boxSizing:'border-box', overflow:'hidden'}}>
                       <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
