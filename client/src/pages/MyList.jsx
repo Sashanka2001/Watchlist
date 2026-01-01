@@ -146,7 +146,7 @@ export default function MyList(){
                               </button>
                             )}
                           </div>
-                          <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50 flex flex-col items-center">
+                          <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50 flex flex-col items-center" style={{marginTop: '16px'}}>
                             {/* Removed 'Your Rating' label */}
                             <div className="flex items-center gap-1">
                               {[1,2,3,4,5].map(i => (
