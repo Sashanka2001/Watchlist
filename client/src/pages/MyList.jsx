@@ -46,7 +46,8 @@ export default function MyList(){
         body: JSON.stringify({ status })
       });
       if (res.ok) {
-        setMovies(movies => movies.filter(m => m._id !== id));
+        // Reload the list from backend to ensure UI is always correct
+        await load();
       } else {
         const data = await res.json().catch(() => ({}));
         alert(data.error || data.detail || 'Failed to update status');
