@@ -127,7 +127,7 @@ export default function MyList(){
                         <div className="p-4">
                           <h3 className="font-semibold text-white text-sm mb-3 line-clamp-2">{m.title}</h3>
                           {/* Removed status badge above buttons */}
-                          <div className="flex gap-2 mb-4">
+                          <div className="flex gap-4 mb-4">
                             {m.status !== 'WATCHING' && (
                               <button onClick={() => updateStatus(m._id, 'WATCHING')} className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center gap-1.5">
                                 <Eye className="w-3.5 h-3.5" />
