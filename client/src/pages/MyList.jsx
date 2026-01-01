@@ -38,11 +38,23 @@ export default function MyList(){
 
   useEffect(()=>{load()},[])
 
-  async function updateStatus(id,status){
-    try{
-      await fetch(`/api/movies/status/${id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})})
-      load()
-    }catch(err){console.error(err)}
+  async function updateStatus(id, status) {
+    try {
+      const res = await fetch(`/api/movies/status/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (res.ok) {
+        setMovies(movies => movies.filter(m => m._id !== id));
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || data.detail || 'Failed to update status');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Failed to update status');
+    }
   }
 
   async function updateRating(id,value){
