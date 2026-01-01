@@ -146,14 +146,25 @@ export default function MyList(){
                               </button>
                             )}
                           </div>
-                          <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50">
+                          <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50 flex flex-col items-center">
                             <label className="text-xs text-gray-400 mb-2 block flex items-center gap-1.5">
-                              <Star className="w-3.5 h-3.5 fill-yellow-500 text-yellow-500" />
                               Your Rating
                             </label>
-                            <div className="flex items-center gap-2">
-                              <input type="range" min={0} max={10} value={m.rating || 0} onChange={e => updateRating(m._id, e.target.value)} className="flex-1 h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-yellow-500" />
-                              <span className="text-white font-bold text-sm min-w-[35px] text-center bg-gray-700 px-2 py-1 rounded">{m.rating || 0}/10</span>
+                            <div className="flex items-center gap-1">
+                              {[1,2,3,4,5].map(i => (
+                                <svg
+                                  key={i}
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill={(m.rating || 0) >= i*2 ? '#facc15' : 'none'}
+                                  stroke="#facc15"
+                                  strokeWidth="1.5"
+                                  className="w-6 h-6"
+                                  style={{display:'inline'}}
+                                >
+                                  <polygon points="10,2 12.59,7.36 18.51,7.97 14,12.14 15.18,18.02 10,15.1 4.82,18.02 6,12.14 1.49,7.97 7.41,7.36" />
+                                </svg>
+                              ))}
                             </div>
                           </div>
                         </div>
