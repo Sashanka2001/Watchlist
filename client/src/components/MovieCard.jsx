@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export default function MovieCard({movie}){
+export default function MovieCard({movie, hideAdd = false}){
   const posterBase = "https://image.tmdb.org/t/p/w200"
   const poster = movie.poster_path ? posterBase+movie.poster_path : movie.poster || ""
 
@@ -53,12 +53,14 @@ export default function MovieCard({movie}){
       )}
       <h4 className="text-white text-base font-semibold text-center line-clamp-2 mb-1" style={{minHeight:40}}>{movie.title}</h4>
       <div className="text-gray-400 text-xs mb-2">{movie.release_date}</div>
-      <button
-        onClick={add}
-        className="mt-auto px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-xs font-medium transition-colors"
-      >
-        Add to To Watch
-      </button>
+      {!hideAdd && (
+        <button
+          onClick={add}
+          className="mt-auto px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-xs font-medium transition-colors"
+        >
+          Add to To Watch
+        </button>
+      )}
     </div>
   )
 }
