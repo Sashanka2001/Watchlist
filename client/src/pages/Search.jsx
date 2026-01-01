@@ -83,16 +83,17 @@ export default function Search(){
                 aria-label="Search results"
                 style={{
                   display: 'flex',
-                  gap: 16,
+                  gap: 24,
                   overflowX: 'auto',
-                  padding: '12px 8px',
-                  WebkitOverflowScrolling: 'touch'
+                  padding: '16px 24px',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollSnapType: 'x mandatory'
                 }}
               >
                 {results.map(m => (
                   <div
                     key={m.id || m._id}
-                    style={{flex: '0 0 auto', width: 170, scrollSnapAlign: 'start'}}
+                    style={{flex: '0 0 auto', width: 180, scrollSnapAlign: 'start'}}
                   >
                     <MovieCard movie={m} />
                   </div>
