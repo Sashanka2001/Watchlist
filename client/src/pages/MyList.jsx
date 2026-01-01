@@ -131,19 +131,17 @@ export default function MyList(){
                             {m.status !== 'WATCHING' && (
                               <button
                                 onClick={() => updateStatus(m._id, 'WATCHING')}
-                                className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center gap-1.5"
+                                className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center"
                                 style={{marginRight: m.status !== 'WATCHED' ? 20 : 0}}
                               >
-                                <Eye className="w-3.5 h-3.5" />
                                 Watching
                               </button>
                             )}
                             {m.status !== 'WATCHED' && (
                               <button
                                 onClick={() => updateStatus(m._id, 'WATCHED')}
-                                className="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center gap-1.5"
+                                className="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs rounded-md transition-colors font-medium flex items-center justify-center"
                               >
-                                <CheckCircle className="w-3.5 h-3.5" />
                                 Watched
                               </button>
                             )}
