@@ -1,16 +1,41 @@
-# React + Vite
+# Watchlist — Client (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React frontend for the Watchlist app, built with Vite. It consumes the backend API to search movies, view details, and manage a user's watch list.
 
-Currently, two official plugins are available:
+## Prerequisites
+- Node.js (v18+ recommended)
+- npm
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Install & Run
+From the `client/` directory:
 
-## React Compiler
+```bash
+npm install
+npm run dev      # start development server (Vite)
+npm run build    # build for production
+npm run preview  # preview the built app
+npm run lint     # run ESLint
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+By default the app expects the backend API to run locally (e.g. `http://localhost:5000`). Start the server in `server/` first.
 
-## Expanding the ESLint configuration
+## Project structure (important files)
+- `src/main.jsx` — app entry
+- `src/App.jsx` — root component and routes
+- `src/components/MovieCard.jsx` — movie tile component
+- `src/pages/Search.jsx` — movie search UI
+- `src/pages/Details.jsx` — movie detail view
+- `src/pages/MyList.jsx` — user's saved list
+- `public/` — static assets
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Environment & API
+The frontend calls the backend's `/api` endpoints. Ensure the backend is running and reachable. If you need a proxy or a custom backend URL, add configuration in your app (or set an env var and update the fetch base URL).
+
+## Build & Deploy
+Run `npm run build` to produce the production bundle in `dist/`. Serve the `dist/` output with any static server or integrate it with the backend.
+
+## Contributing / Development notes
+- Keep components small and focused (see `MovieCard.jsx`).
+- Use the mock data in `server/controllers/data/mock_movies.json` when TMDB access is not available.
+
+If you'd like, I can add a `.env` file example for frontend settings or a `proxy` config for local development.

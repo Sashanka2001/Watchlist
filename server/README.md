@@ -1,55 +1,61 @@
-Server setup and MongoDB connection
-=================================
 
-1) Create a `.env` file in the `server/` folder (next to `index.js`) by copying the example:
+# Watchlist — Server (Backend)
 
-```powershell
-cd server
-copy .env.example .env
-notepad .env    # or edit with your editor
-```
+This folder contains the Express + MongoDB backend for the Watchlist app. It provides authentication, movie endpoints (TMDB proxy + local mock fallback), and persistence for users' saved lists.
 
-2) Fill `MONGO_URI` with either:
-- A MongoDB Atlas connection string (recommended):
-  - Example: `mongodb+srv://<username>:<password>@cluster0.mongodb.net/mywatchlist?retryWrites=true&w=majority`
-  - Make sure your Atlas Network Access allows your IP (or 0.0.0.0/0 for testing).
-- Or a local MongoDB URI: `mongodb://127.0.0.1:27017/watchlist`
+## Contents
+- API server using Express (ESM)
+- Models: `models/User.js`, `models/Movie.js`
+- Routes: `routes/auth.js`, `routes/movie.js`
+- Mock data: `controllers/data/mock_movies.json`
 
-3) Fill `JWT_SECRET` (any long secret string) and optionally `TMDB_KEY` if you use the TMDB proxy.
+## Prerequisites
+- Node.js (v18+ recommended)
+- npm
+- MongoDB (Atlas or local)
 
-4) Install dependencies and start the server:
+## Environment
+Create a `.env` file inside the `server/` folder. Important variables:
 
-```powershell
-npm install
-npm run dev   # uses nodemon, or npm start
-```
+- `MONGO_URI` — MongoDB connection string (e.g. `mongodb://127.0.0.1:27017/watchlist`)
+- `JWT_SECRET` — secret used to sign JWTs
+- `TMDB_KEY` — (optional) The Movie DB API key for live movie data
+- `PORT` — optional server port
 
-5) Verify the connection
-- On successful connection you should see `MongoDB Connected` in the server logs.
-- If there is an error, check the URI, Atlas IP whitelist, and that Mongo is running locally if using local URI.
+Example `.env`:
 
-If you want a quick temporary fallback so the API runs without Mongo (for UI development), tell me and I'll add an in-memory fallback mode.
-
-TMDB API (movie search/details)
---------------------------------
-
-1) Get a TMDB API key (v3) at https://www.themoviedb.org/ (Account → Settings → API).
-2) Add the key to your `.env` file:
-
-```
+MONGO_URI=mongodb://127.0.0.1:27017/watchlist
+JWT_SECRET=supersecretkey
 TMDB_KEY=your_tmdb_api_key_here
+
+## Install & Run
+From the `server/` directory:
+
+```bash
+npm install
+npm run dev    # development (nodemon)
+npm start      # start with node
 ```
 
-3) Endpoints available once `TMDB_KEY` is configured:
-- `GET /api/movies/search?q=QUERY` — search movies (also works with local mock data if key missing)
-- `GET /api/movies/details/:tmdbId` — movie details
-- `GET /api/movies/credits/:tmdbId` — cast & crew
+## API (overview)
+Routes are mounted under `/api`. Common endpoints:
 
-Images (posters)
------------------
-Use the TMDB image base URL when rendering posters in the frontend, for example:
+- `POST /api/auth/register` — register a user
+- `POST /api/auth/login` — login and receive JWT
+- `GET /api/movies/search?q=QUERY` — search movies (TMDB or mock)
+- `GET /api/movies/details/:tmdbId` — details for a TMDB movie
+- `GET /api/movies/credits/:tmdbId` — credits for a TMDB movie
 
-```
-https://image.tmdb.org/t/p/w200/<poster_path>
-```
+For endpoints requiring authentication, include header: `Authorization: Bearer <token>`.
+
+## Models & Data
+- `models/User.js` — user schema and password hashing
+- `models/Movie.js` — movie/save schema
+- `controllers/data/mock_movies.json` — local movie dataset used as fallback
+
+## Troubleshooting
+- If Mongo fails to connect, verify `MONGO_URI` and Atlas IP whitelist (if using Atlas).
+- Ensure `JWT_SECRET` is set for authentication routes.
+
+If you'd like, I can add example `curl` commands or a Postman collection for all endpoints.
 
