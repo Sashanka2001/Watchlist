@@ -58,22 +58,7 @@ export default function Watching() {
                 <div key={m._id} style={{flex: '0 0 auto', width: 176, scrollSnapAlign: 'start'}}>
                   <div style={{padding:8, borderRadius:12, border:'1px solid rgba(255,255,255,0.06)', background:'rgba(255,255,255,0.02)', boxSizing:'border-box', overflow:'hidden'}}>
                     <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} />
-                    <div className="flex items-center justify-center mt-3 mb-2">
-                      {[1,2,3,4,5].map(i => (
-                        <svg
-                          key={i}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill={(m.rating || 0) >= i*2 ? '#facc15' : 'none'}
-                          stroke="#facc15"
-                          strokeWidth="1.5"
-                          className="w-3 h-3"
-                          style={{display:'inline'}}
-                        >
-                          <polygon points="10,2 12.59,7.36 18.51,7.97 14,12.14 15.18,18.02 10,15.1 4.82,18.02 6,12.14 1.49,7.97 7.41,7.36" />
-                        </svg>
-                      ))}
-                    </div>
+                    {/* rating removed on Watching page */}
                   </div>
                 </div>
               ))}
