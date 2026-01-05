@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { User, Mail, Lock } from "lucide-react";
-import { UserPlus, Mail, Lock, User, AlertCircle, Eye, EyeOff, CheckCircle } from "lucide-react";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
