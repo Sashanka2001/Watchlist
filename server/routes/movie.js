@@ -44,6 +44,30 @@ router.get("/search", async (req,res)=>{
   }
 })
 
+// Latest / now playing movies: /api/movies/latest
+router.get('/latest', async (req, res) => {
+  try{
+    const key = process.env.TMDB_KEY
+    if(!key){
+      const __filename = fileURLToPath(import.meta.url)
+      const __dirname = path.dirname(__filename)
+      const file = path.resolve(__dirname, '..', 'data', 'mock_movies.json')
+      console.log('TMDB_KEY not set — using mock dataset for latest at', file)
+      const txt = await fs.readFile(file, 'utf-8')
+      const items = JSON.parse(txt)
+      // return first 12 mock items as "latest"
+      return res.json(items.slice(0,12))
+    }
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`
+    const resp = await fetch(url)
+    const data = await resp.json()
+    res.json(data.results || [])
+  }catch(err){
+    console.error('Latest error:', err && err.stack ? err.stack : err)
+    res.status(500).json({ error: 'Latest failed', detail: err.message })
+  }
+})
+
 // TMDB details endpoint: /api/movies/details/:tmdbId
 router.get('/details/:id', async (req, res) => {
   try{
