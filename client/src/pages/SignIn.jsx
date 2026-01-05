@@ -34,11 +34,7 @@ export default function SignIn() {
 	return (
 		<div className="min-h-screen flex items-center justify-center">
 			<div className="w-full max-w-lg bg-white/95 rounded-2xl shadow-2xl p-8 mx-4 text-gray-900">
-				<nav className="text-center mb-4">
-					<Link to="/home" className="text-sm text-indigo-600 hover:underline mr-2">Home</Link>
-					<Link to="/search" className="text-sm text-gray-600 hover:underline mr-2">Search</Link>
-					<Link to="/my-list" className="text-sm text-gray-600 hover:underline">My List</Link>
-				</nav>
+
 
 				<div className="flex flex-col items-center mb-6">
 					<div className="bg-indigo-100 rounded-full p-3 mb-3">

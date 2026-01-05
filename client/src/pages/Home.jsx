@@ -19,11 +19,6 @@ export default function Home(){
   return (
     <div className="min-h-screen px-4 py-8">
       <div className="max-w-4xl mx-auto text-center">
-        <nav className="mb-6">
-          <Link to="/home" className="text-indigo-400 hover:underline mr-3">Home</Link>
-          <Link to="/search" className="text-gray-300 hover:underline mr-3">Search</Link>
-          <Link to="/my-list" className="text-gray-300 hover:underline">My List</Link>
-        </nav>
 
         <h1 className="text-3xl font-bold text-white mb-2">Latest Releases</h1>
         <p className="text-sm text-gray-300 mb-6">What’s playing now — curated from TMDB</p>
