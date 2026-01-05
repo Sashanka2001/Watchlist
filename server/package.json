@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "mongo:up": "docker-compose -f ..\\docker-compose.yml up -d mongo",
+    "mongo:down": "docker-compose -f ..\\docker-compose.yml down"
   },
   "keywords": [],
   "author": "",
@@ -18,10 +22,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.20.4"
   },
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
+  
   "devDependencies": {
     "nodemon": "^3.1.11"
   }
