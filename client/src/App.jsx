@@ -8,13 +8,28 @@ import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
 import RequireAuth from "./components/RequireAuth"
 import './App.css'
+import { useLocation } from "react-router-dom"
 
 export default function App(){
   return (
     <BrowserRouter>
-      <div style={{padding:12,borderBottom:'1px solid #eee'}}>
-        <Link to="/home">Home</Link> | <Link to="/search">Search</Link> | <Link to="/my-list">My List</Link> | <Link to="/watching">Watching</Link> | <Link to="/watched">Watched</Link> | <Link to="/sign-in">Sign In</Link> | <Link to="/sign-up">Sign Up</Link>
-      </div>
+      <AppContent />
+    </BrowserRouter>
+  )
+}
+
+function AppContent(){
+  const location = useLocation();
+  const hideNav = location.pathname === '/' || location.pathname === '/sign-in' || location.pathname === '/sign-up';
+
+  return (
+    <>
+      {!hideNav && (
+        <div style={{padding:12,borderBottom:'1px solid #eee'}}>
+          <Link to="/home">Home</Link> | <Link to="/search">Search</Link> | <Link to="/my-list">My List</Link> | <Link to="/watching">Watching</Link> | <Link to="/watched">Watched</Link> | <Link to="/sign-in">Sign In</Link> | <Link to="/sign-up">Sign Up</Link>
+        </div>
+      )}
+
       <Routes>
         <Route path="/" element={<SignIn/>} />
         <Route path="/home" element={<RequireAuth><div style={{padding:20}}><h2>Welcome to MyWatchlist</h2><p>Use Search to find movies.</p></div></RequireAuth>} />
@@ -26,6 +41,6 @@ export default function App(){
         <Route path="/sign-in" element={<SignIn/>} />
         <Route path="/sign-up" element={<SignUp/>} />
       </Routes>
-    </BrowserRouter>
+    </>
   )
 }
