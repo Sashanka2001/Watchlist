@@ -96,28 +96,6 @@ export default function SignUp() {
         </div>
       </div>
     );
-                <div className="flex items-start gap-3 p-4 bg-red-500/10 border border-red-500/50 rounded-lg">
-                  <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-400">{error}</p>
-                </div>
-              )}
-
-              {/* Username Field */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-300">
-                  Username
-                </label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    required
-                    placeholder="johndoe"
-                    className="w-full pl-11 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  />
                 </div>
               </div>
 
