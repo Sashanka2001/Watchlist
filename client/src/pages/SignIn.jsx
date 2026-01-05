@@ -23,7 +23,7 @@ export default function SignIn() {
         setError(data.error || "Login failed");
       } else {
         localStorage.setItem("token", data.token);
-        navigate("/my-list");
+        navigate("/home");
       }
     } catch (err) {
       setError("Network error");
