@@ -26,7 +26,7 @@ function AppContent(){
     <>
       {!hideNav && (
         <div style={{padding:12,borderBottom:'1px solid #eee'}}>
-          <Link to="/home">Home</Link> | <Link to="/search">Search</Link> | <Link to="/my-list">My List</Link> | <Link to="/watching">Watching</Link> | <Link to="/watched">Watched</Link> | <Link to="/sign-in">Sign In</Link> | <Link to="/sign-up">Sign Up</Link>
+          <Link to="/home">Home</Link> | <Link to="/search">Search</Link> | <Link to="/my-list">My List</Link> | <Link to="/watching">Watching</Link> | <Link to="/watched">Watched</Link>
         </div>
       )}
 
