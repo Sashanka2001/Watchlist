@@ -21,7 +21,7 @@ export default function Home(){
       <div className="max-w-4xl mx-auto text-center">
 
         <h1 className="text-3xl font-bold text-white mb-2">Latest Releases</h1>
-        <p className="text-sm text-gray-300 mb-6">What’s playing now — curated from TMDB</p>
+        <p className="text-sm text-gray-300 mb-6">What’s playing now - curated from TMDB</p>
 
         {loading && <div className="text-gray-300">Loading...</div>}
 
