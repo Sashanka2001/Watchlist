@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { User, Mail, Lock } from "lucide-react";
 import { UserPlus, Mail, Lock, User, AlertCircle, Eye, EyeOff, CheckCircle } from "lucide-react";
 
 export default function SignUp() {
@@ -60,36 +61,42 @@ export default function SignUp() {
       }
     } catch (err) {
       setError("Network error. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit(e);
-    }
-  };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4">
-      <div className="w-full max-w-md">
-        {/* Card */}
-        <div className="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-8 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl mb-4">
-              <UserPlus className="w-8 h-8 text-white" />
-            </div>
-            <h2 className="text-3xl font-bold text-white mb-2">Create Account</h2>
-            <p className="text-purple-100">Join us to get started</p>
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{background: 'linear-gradient(135deg,#e0e7ff 0%,#f1f5f9 100%)'}}>
+        <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
+          <div className="bg-indigo-100 rounded-full p-4 mb-4">
+            <User className="w-10 h-10 text-indigo-500" />
           </div>
-
-          {/* Form */}
-          <div className="p-8">
-            <div className="space-y-5">
-              {/* Error Message */}
-              {error && (
+          <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">Create Account</h2>
+          <p className="text-gray-500 mb-6 text-center">Join us to start managing your watchlist</p>
+          {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
+          <form onSubmit={handleSubmit} className="w-full">
+            <div className="mb-4 relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><User className="w-5 h-5" /></span>
+              <input type="text" value={username} onChange={e => setUsername(e.target.value)} required placeholder="Full Name" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <div className="mb-4 relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Mail className="w-5 h-5" /></span>
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <div className="mb-4 relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Lock className="w-5 h-5" /></span>
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <div className="mb-6 relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Lock className="w-5 h-5" /></span>
+              <input type="password" value={confirm} onChange={e => setConfirm(e.target.value)} required placeholder="Confirm Password" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <button type="submit" disabled={loading} className="w-full py-2 rounded-lg font-semibold text-white mb-4" style={{background: 'linear-gradient(90deg,#6366f1 0%,#2563eb 100%)', boxShadow: '0 2px 8px #6366f133'}}>
+              {loading ? "Creating Account..." : "Create Account"}
+            </button>
+          </form>
+          <div className="text-center text-gray-500 mt-2">
+            Already have an account? <Link to="/sign-in" className="text-indigo-500 hover:underline font-medium">Sign in</Link>
+          </div>
+        </div>
+      </div>
+    );
                 <div className="flex items-start gap-3 p-4 bg-red-500/10 border border-red-500/50 rounded-lg">
                   <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-red-400">{error}</p>
