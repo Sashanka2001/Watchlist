@@ -59,14 +59,14 @@ export default function SignIn() {
 					<div className="relative">
 						<label className="sr-only">Email</label>
 						<div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Mail className="w-4 h-4" /></div>
-						<input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="you@example.com" className="w-full pl-11 pr-3 py-2 border rounded bg-white" />
+						<input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="you@example.com" className="w-full pl-11 pr-3 py-2 border rounded bg-white text-gray-800" />
 					</div>
 
 					<div className="relative">
 						<label className="sr-only">Password</label>
 						<div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Lock className="w-4 h-4" /></div>
-						<input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="w-full pl-11 pr-12 py-2 border rounded bg-white" />
-						<button type="button" onClick={() => setShowPassword(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+						<input type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="w-full pl-11 pr-12 py-2 border rounded bg-white text-gray-800" />
+						<button type="button" onClick={() => setShowPassword(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 bg-white p-2 rounded shadow-sm">
 							{showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
 						</button>
 					</div>

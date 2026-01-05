@@ -113,7 +113,7 @@ export default function SignUp() {
               required
               className="w-full pl-11 pr-12 py-2 border rounded bg-white"
             />
-            <button type="button" onClick={() => setShowPassword(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+            <button type="button" onClick={() => setShowPassword(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 bg-white p-2 rounded shadow-sm">
               {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
             {password && (
@@ -138,7 +138,7 @@ export default function SignUp() {
               required
               className="w-full pl-11 pr-12 py-2 border rounded bg-white"
             />
-            <button type="button" onClick={() => setShowConfirm(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+            <button type="button" onClick={() => setShowConfirm(s => !s)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 bg-white p-2 rounded shadow-sm">
               {showConfirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
             {confirm && (
@@ -153,7 +153,7 @@ export default function SignUp() {
           </div>
 
           <div className="flex items-center gap-2">
-            <input id="agree" type="checkbox" checked={agree} onChange={e => setAgree(e.target.checked)} className="w-4 h-4" />
+            <input id="agree" type="checkbox" checked={agree} onChange={e => setAgree(e.target.checked)} className="w-4 h-4 bg-white border rounded" />
             <label htmlFor="agree" className="text-sm text-gray-600">I agree to the <Link to="/terms" className="text-indigo-600 underline">Terms of Service</Link></label>
           </div>
 
@@ -166,10 +166,10 @@ export default function SignUp() {
 
         <div className="mt-4 text-center text-sm text-gray-500">Or continue with</div>
         <div className="mt-3 flex gap-3 justify-center">
-          <button className="flex items-center gap-2 px-4 py-2 border rounded hover:bg-gray-50">
+          <button className="flex items-center gap-2 px-4 py-2 border rounded bg-white text-gray-800 hover:bg-gray-100">
             <Github className="w-4 h-4" /> GitHub
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 border rounded hover:bg-gray-50">
+          <button className="flex items-center gap-2 px-4 py-2 border rounded bg-white text-gray-800 hover:bg-gray-100">
             <Globe className="w-4 h-4" /> Google
           </button>
         </div>
