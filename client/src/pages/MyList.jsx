@@ -133,12 +133,12 @@ export default function MyList(){
                 }}
               >
                 {movies.filter(m => m.status !== 'WATCHING' && m.status !== 'WATCHED').map(m => (
-                  <div key={m._id} style={{flex: '0 0 auto', width: 360, scrollSnapAlign: 'start'}}>
+                  <div key={m._id} style={{flex: '0 0 auto', width: 220, scrollSnapAlign: 'start'}}>
                     <div style={{padding:8, borderRadius:12, border:'1px solid rgba(255,255,255,0.06)', background:'rgba(255,255,255,0.02)', boxSizing:'border-box', overflow:'hidden'}}>
                       <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
                         <MovieCard movie={{title: m.title, poster_path: null, poster: m.poster, release_date: ''}} />
-                        <div className="p-4">
-                          <h3 className="font-semibold text-white text-sm mb-3 line-clamp-2">{m.title}</h3>
+                        <div className="p-3">
+                          <h3 className="font-semibold text-white text-sm mb-2 line-clamp-2">{m.title}</h3>
                           {/* Removed status badge above buttons */}
                           <div className="flex mb-4">
                             {m.status !== 'WATCHING' && (
@@ -159,7 +159,7 @@ export default function MyList(){
                               </button>
                             )}
                           </div>
-                          <div className="bg-gray-700/50 rounded-lg p-3 border border-gray-600/50 flex flex-col items-center" style={{marginTop: '16px'}}>
+                            <div className="bg-gray-700/50 rounded-lg p-2 border border-gray-600/50 flex flex-col items-center" style={{marginTop: '12px'}}>
                             {/* Removed 'Your Rating' label */}
                             <div className="flex items-center gap-1">
                               {[1,2,3,4,5].map(i => (
