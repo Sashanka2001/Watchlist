@@ -29,7 +29,7 @@ export default function SignUp() {
         setError(data.error || "Sign up failed");
       } else {
         localStorage.setItem("token", data.token);
-        navigate("/my-list");
+        navigate("/home");
       }
     } catch (err) {
       setError("Network error");
