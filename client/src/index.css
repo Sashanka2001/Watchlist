@@ -29,10 +29,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  /* full-screen dark blue gradient background for all pages */
+  background: linear-gradient(180deg,#071428 0%,#0b1724 50%,#0f172a 100%);
 }
 
 h1 {
