@@ -28,10 +28,10 @@ export default function Search(){
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
-      <div className="w-full max-w-3xl mx-auto px-4 py-12 sm:px-8 lg:px-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <div className="w-full mx-auto px-6 py-12 sm:px-8 lg:px-16">
         {/* Glassmorphism Card */}
-        <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-10 md:p-14 mb-12 animate-fadein">
+        <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-10 md:p-14 mb-12 animate-fadein w-full" style={{maxWidth: '1200px', margin: '0 auto'}}>
           {/* Header */}
           <div className="text-center mb-10">
             <h1 className="text-5xl font-extrabold text-white mb-3 flex items-center justify-center gap-4 tracking-tight drop-shadow-lg">
