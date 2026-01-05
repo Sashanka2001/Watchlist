@@ -6,6 +6,7 @@ import Watched from "./pages/Watched"
 import Watching from "./pages/Watching"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
+import RequireAuth from "./components/RequireAuth"
 import './App.css'
 
 export default function App(){
@@ -16,12 +17,12 @@ export default function App(){
       </div>
       <Routes>
         <Route path="/" element={<SignIn/>} />
-        <Route path="/home" element={<div style={{padding:20}}><h2>Welcome to MyWatchlist</h2><p>Use Search to find movies.</p></div>} />
-        <Route path="/search" element={<Search/>} />
-        <Route path="/my-list" element={<MyList/>} />
-        <Route path="/watching" element={<Watching/>} />
-        <Route path="/watched" element={<Watched/>} />
-        <Route path="/movie/:id" element={<Details/>} />
+        <Route path="/home" element={<RequireAuth><div style={{padding:20}}><h2>Welcome to MyWatchlist</h2><p>Use Search to find movies.</p></div></RequireAuth>} />
+        <Route path="/search" element={<RequireAuth><Search/></RequireAuth>} />
+        <Route path="/my-list" element={<RequireAuth><MyList/></RequireAuth>} />
+        <Route path="/watching" element={<RequireAuth><Watching/></RequireAuth>} />
+        <Route path="/watched" element={<RequireAuth><Watched/></RequireAuth>} />
+        <Route path="/movie/:id" element={<RequireAuth><Details/></RequireAuth>} />
         <Route path="/sign-in" element={<SignIn/>} />
         <Route path="/sign-up" element={<SignUp/>} />
       </Routes>
