@@ -6,6 +6,7 @@ import Watched from "./pages/Watched"
 import Watching from "./pages/Watching"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp"
+import Home from "./pages/Home"
 import RequireAuth from "./components/RequireAuth"
 import './App.css'
 import { useLocation } from "react-router-dom"
@@ -32,7 +33,7 @@ function AppContent(){
 
       <Routes>
         <Route path="/" element={<SignIn/>} />
-        <Route path="/home" element={<RequireAuth><div style={{padding:20}}><h2>Welcome to MyWatchlist</h2><p>Use Search to find movies.</p></div></RequireAuth>} />
+        <Route path="/home" element={<RequireAuth><Home/></RequireAuth>} />
         <Route path="/search" element={<RequireAuth><Search/></RequireAuth>} />
         <Route path="/my-list" element={<RequireAuth><MyList/></RequireAuth>} />
         <Route path="/watching" element={<RequireAuth><Watching/></RequireAuth>} />
