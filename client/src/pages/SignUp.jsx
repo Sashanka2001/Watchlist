@@ -60,64 +60,45 @@ export default function SignUp() {
       }
     } catch (err) {
       setError("Network error. Please try again.");
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{background: 'linear-gradient(135deg,#e0e7ff 0%,#f1f5f9 100%)'}}>
-        <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
-          <div className="bg-indigo-100 rounded-full p-4 mb-4">
-            <User className="w-10 h-10 text-indigo-500" />
+    }
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center" style={{background: 'linear-gradient(135deg,#e0e7ff 0%,#f1f5f9 100%)'}}>
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
+        <div className="bg-indigo-100 rounded-full p-4 mb-4">
+          <User className="w-10 h-10 text-indigo-500" />
+        </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">Create Account</h2>
+        <p className="text-gray-500 mb-6 text-center">Join us to start managing your watchlist</p>
+        {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
+        <form onSubmit={handleSubmit} className="w-full">
+          <div className="mb-4 relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><User className="w-5 h-5" /></span>
+            <input type="text" value={username} onChange={e => setUsername(e.target.value)} required placeholder="Full Name" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">Create Account</h2>
-          <p className="text-gray-500 mb-6 text-center">Join us to start managing your watchlist</p>
-          {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
-          <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-4 relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><User className="w-5 h-5" /></span>
-              <input type="text" value={username} onChange={e => setUsername(e.target.value)} required placeholder="Full Name" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-            </div>
-            <div className="mb-4 relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Mail className="w-5 h-5" /></span>
-              <input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-            </div>
-            <div className="mb-4 relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Lock className="w-5 h-5" /></span>
-              <input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-            </div>
-            <div className="mb-6 relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Lock className="w-5 h-5" /></span>
-              <input type="password" value={confirm} onChange={e => setConfirm(e.target.value)} required placeholder="Confirm Password" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
-            </div>
-            <button type="submit" disabled={loading} className="w-full py-2 rounded-lg font-semibold text-white mb-4" style={{background: 'linear-gradient(90deg,#6366f1 0%,#2563eb 100%)', boxShadow: '0 2px 8px #6366f133'}}>
-              {loading ? "Creating Account..." : "Create Account"}
-            </button>
-          </form>
-          <div className="text-center text-gray-500 mt-2">
-            Already have an account? <Link to="/sign-in" className="text-indigo-500 hover:underline font-medium">Sign in</Link>
+          <div className="mb-4 relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Mail className="w-5 h-5" /></span>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="Email Address" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
           </div>
+          <div className="mb-4 relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Lock className="w-5 h-5" /></span>
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="Password" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+          </div>
+          <div className="mb-6 relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><Lock className="w-5 h-5" /></span>
+            <input type="password" value={confirm} onChange={e => setConfirm(e.target.value)} required placeholder="Confirm Password" className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+          </div>
+          <button type="submit" disabled={loading} className="w-full py-2 rounded-lg font-semibold text-white mb-4" style={{background: 'linear-gradient(90deg,#6366f1 0%,#2563eb 100%)', boxShadow: '0 2px 8px #6366f133'}}>
+            {loading ? "Creating Account..." : "Create Account"}
+          </button>
+        </form>
+        <div className="text-center text-gray-500 mt-2">
+          Already have an account? <Link to="/sign-in" className="text-indigo-500 hover:underline font-medium">Sign in</Link>
         </div>
       </div>
-    );
-                </div>
-              </div>
-
-              {/* Email Field */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-300">
-                  Email Address
-                </div>
-              </div>
-            );
-                <label className="block text-sm font-medium text-gray-300">
-                  Password
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    required
-                    placeholder="••••••••"
+    </div>
+  );
                     className="w-full pl-11 pr-12 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                   <button
